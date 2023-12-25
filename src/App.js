@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function App() {
     const number = useSelector((state) => state.number);
-    const [userInput, setUserInput] = useState(0);
+    const [userInput, setUserInput] = useState('');
     const dispatch = useDispatch();
     return (
 
@@ -26,18 +26,18 @@ function App() {
             }>Decrement by 01
             </button>
             <br/>
-            <input value={userInput} onChange={(e)=>{setUserInput(parseInt(e.target.value))}}/>
+            <input value={userInput} onChange={(e)=>{setUserInput(e.target.value)}}/>
             <button onClick={()=>{
                 dispatch({
                     type:'inc_by_number',
-                    payload:userInput,
+                    payload:parseInt(userInput),
                 })
             }}>Increment</button>
             <button onClick={
                 ()=>{
                     dispatch({
                         type:'dec_by_number',
-                        payload:userInput,
+                        payload:parseInt(userInput),
                     })
                 }
             }>Decrement</button>
