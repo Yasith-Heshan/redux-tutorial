@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
+import {numberDecrement, numberIncrement} from "./store/store";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const number = useSelector((state) => state.number);
+    const [userInput, setUserInput] = useState('');
+    const dispatch = useDispatch();
+    return (
+
+        <div className="App">
+            {number}
+            <br/>
+            <button onClick={() => {
+                dispatch(numberIncrement())
+            }}>Increment by 01
+            </button>
+            <button onClick={
+                () => {
+                    dispatch(numberDecrement())
+                }
+            }>Decrement by 01
+            </button>
+            <br/>
+            <input value={userInput} onChange={(e)=>{setUserInput(e.currentTarget.value)}}/>
+            <button onClick={()=>{
+                dispatch(numberIncrement(parseInt(userInput)))
+            }}>Increment</button>
+            <button onClick={
+                ()=>{
+                    dispatch(numberDecrement(parseInt(userInput)))
+                }
+            }>Decrement</button>
+        </div>
+
+    );
 }
 
 export default App;
