@@ -1,8 +1,9 @@
-import {Auth} from "../AppContextProvider";
 import CompB from "./CompB";
+import {Auth} from "../AppContextProvider";
+
 
 const CompA = ()=>{
-    const {setUserName}  = Auth();
+    const {setUserName} = Auth();
     return (
       <>
         <input onChange={(e)=>{

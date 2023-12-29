@@ -1,17 +1,15 @@
 import './App.css';
 import CompA from "./Components/CompA";
-import {createContext, useState} from "react";
+import {AppContextProvider} from "./AppContextProvider";
 
-export const UserContext = createContext({});
 function App() {
-    const [userName, setUserName] = useState('');
 
     return (
-        <UserContext.Provider value={{userName,setUserName}}>
+        <AppContextProvider>
             <div className="App">
                 <CompA/>
             </div>
-        </UserContext.Provider>
+        </AppContextProvider>
     );
 }
 

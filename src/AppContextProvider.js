@@ -14,6 +14,3 @@ export const AppContextProvider = ({children}) => {
 export const Auth = ()=>{
     return useContext(UserContext);
 }
-
-
-
