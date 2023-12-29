@@ -1,8 +1,9 @@
-import {Auth} from "../AppContextProvider";
 import CompB from "./CompB";
+import {useContext} from "react";
+import {UserContext} from "../App";
 
 const CompA = ()=>{
-    const {setUserName}  = Auth();
+    const {setUserName}  = useContext(UserContext);
     return (
       <>
         <input onChange={(e)=>{

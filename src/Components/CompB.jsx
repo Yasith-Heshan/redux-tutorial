@@ -1,7 +1,10 @@
 import {Auth} from "../AppContextProvider";
+import {useContext} from "react";
+import {UserContext} from "../App";
 
 const CompB = ()=>{
-    const {userName} = Auth();
+    const {userName}  = useContext(UserContext);
+
     return (
         <>
             <p>{userName}</p>
