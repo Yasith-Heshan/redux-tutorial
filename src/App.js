@@ -1,39 +1,17 @@
 import './App.css';
-import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
-import {numberDecrement, numberIncrement} from "./store/store";
+import CompA from "./Components/CompA";
+import {createContext, useState} from "react";
 
+export const UserContext = createContext({});
 function App() {
-    const number = useSelector((state) => state.number);
-    const [userInput, setUserInput] = useState('');
-    const dispatch = useDispatch();
+    const [userName, setUserName] = useState('');
+
     return (
-
-        <div className="App">
-            {number}
-            <br/>
-            <button onClick={() => {
-                dispatch(numberIncrement())
-            }}>Increment by 01
-            </button>
-            <button onClick={
-                () => {
-                    dispatch(numberDecrement())
-                }
-            }>Decrement by 01
-            </button>
-            <br/>
-            <input value={userInput} onChange={(e)=>{setUserInput(e.currentTarget.value)}}/>
-            <button onClick={()=>{
-                dispatch(numberIncrement(parseInt(userInput)))
-            }}>Increment</button>
-            <button onClick={
-                ()=>{
-                    dispatch(numberDecrement(parseInt(userInput)))
-                }
-            }>Decrement</button>
-        </div>
-
+        <UserContext.Provider value={{userName,setUserName}}>
+            <div className="App">
+                <CompA/>
+            </div>
+        </UserContext.Provider>
     );
 }
 
