@@ -1,38 +1,14 @@
-import {createStore} from 'redux';
+import {configureStore} from "@reduxjs/toolkit";
+import customerSliceReducer from './custormerSlice';
+import productSliceReducer from './productSlice'
 
-const initialState  = {
-    number : 0
-}
-
-export const numberActionTypes = {
-    INC: 'increment',
-    DEC: 'decrement',
-}
-
-export const numberIncrement = (payload=1)=>(
+const store = configureStore(
     {
-        type:numberActionTypes.INC,
-        payload
+        reducer: {
+            customerSlice: customerSliceReducer,
+            productSlice:productSliceReducer,
+        }
     }
-)
-
-export const numberDecrement = (payload=1)=>(
-    {
-        type:numberActionTypes.DEC,
-        payload
-    }
-)
-const reducer = (state=initialState, action)=>{
-    if(action.type === numberActionTypes.INC){
-        return {number: state.number + action.payload};
-    }
-    if(action.type === numberActionTypes.DEC){
-        return {number: state.number - action.payload};
-    }
-
-    return state;
-}
-
-const store = createStore(reducer);
+);
 
 export default store;
